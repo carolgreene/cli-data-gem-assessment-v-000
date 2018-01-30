@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require './lib/top_20_travel_deals'
+
+Top20TravelDeals::CLI.new.call

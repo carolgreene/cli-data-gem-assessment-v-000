@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+#require "bundler/setup"  These worked for Avi & are in console. Don't know why they don work on mine
+#require "top_travel_deals"  #same as above
+
+require './lib/top_travel_deals'
+
+TopTravelDeals::CLI.new.call

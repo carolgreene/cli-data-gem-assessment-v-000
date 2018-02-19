@@ -1,0 +1,29 @@
+
+[1mFrom:[0m /home/carolgreene/cli-data-gem-assessment-v-000/top_travel_deals/lib/top_travel_deals/cli.rb @ line 27 TopTravelDeals::CLI.scrape_index:
+
+    [1;34m24[0m: [32mdef[0m [1;36mself[0m.[1;34mscrape_index[0m
+    [1;34m25[0m:   [1;34m#should return a list of instances of the travel deals[0m
+    [1;34m26[0m:   doc = [1;34;4mNokogiri[0m::HTML(open([31m[1;31m"[0m[31mhttps://www.travelzoo.com/top20/?pageType=Homepage[1;31m"[0m[31m[0m))
+ => [1;34m27[0m:     binding.pry
+    [1;34m28[0m:     test = doc.search([31m[1;31m"[0m[31mdiv.fixed-container[1;31m"[0m[31m[0m).text   [1;34m#.each do |info|[0m
+    [1;34m29[0m:     binding.pry
+    [1;34m30[0m:       [1;34m#deal.name = info.search()[0m
+    [1;34m31[0m:       [1;34m#deal.price = info.search()[0m
+    [1;34m32[0m:       [1;34m#deal.url = info.search("a").attr("href").value[0m
+    [1;34m33[0m: 
+    [1;34m34[0m: 
+    [1;34m35[0m: 
+    [1;34m36[0m:   [1;34m#doc.search("h2.deal-headline").each do |info|[0m
+    [1;34m37[0m:     [1;34m#deal = TopTravelDeals::Deal.new[0m
+    [1;34m38[0m:     [1;34m#deal.name = info.search("span.deal-headline-text").text[0m
+    [1;34m39[0m:     [1;34m#deal.price = info.search("span.deal-headline-price").text[0m
+    [1;34m40[0m:     [1;34m#deal_source = info.search("p.h6.deal-source").text[0m
+    [1;34m41[0m:     [1;34m#deal.url = info.search("div.fixed-container a").attr("href").value[0m
+    [1;34m42[0m:   [1;34m#end[0m
+    [1;34m43[0m: 
+    [1;34m44[0m:   [1;34m#doc.search("div.fixed-container a").each do |trip|[0m
+    [1;34m45[0m:     [1;34m#puts "#{trip.attr("href")}"[0m
+    [1;34m46[0m:   [1;34m#end[0m
+    [1;34m47[0m: 
+    [1;34m48[0m: [32mend[0m
+

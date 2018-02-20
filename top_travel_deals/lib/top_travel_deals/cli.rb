@@ -2,12 +2,14 @@
 class TopTravelDeals::CLI
 
 
+
+
   def call
-    puts "---------------------------------------------------------------------------------------------------"
+    puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
     puts "                                                                             "
-    puts "                   Welcome to Top Travel Deals!                              "
+    puts "                   Welcome to Top Travel Deals!                              ".colorize(:yellow)
     puts "                                                                             "
-    puts "---------------------------------------------------------------------------------------------------"
+    puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
     TopTravelDeals::CLI.scrape_index
     list_deals
     menu
@@ -15,45 +17,45 @@ class TopTravelDeals::CLI
 
   def list_deals
     puts " "
-    puts "Here's the Top 20 Travel Deals for this week!"
+    puts "Here's the Top 20 Travel Deals for this week!".colorize(:yellow)
     puts " "
     TopTravelDeals::Deal.all.each.with_index(1) do |trip, index|
-      puts "#{index}. #{trip.name}.....only #{trip.price}"
+      puts "#{index}. #{trip.name}.....only #{trip.price}".colorize(:yellow)
     end
-    puts "---------------------------------------------------------------------------------------------------"
+    puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
   end
 
   def menu
     puts " "
-    puts "Enter the number of the deal you'd like to see."
+    puts "Enter the number of the deal you'd like to see.".colorize(:light_magenta)
     input = gets.strip.to_i
     #if input = "exit"
       #goodbye
     #end
      until input.between?(1,TopTravelDeals::Deal.all.size)
-       puts "That's not a valid option. Please enter a number between 1-20"
+       puts "That's not a valid option. Please enter a number between 1-20".colorize(:light_magenta)
        input = gets.strip.to_i
      end
 
     choice = TopTravelDeals::Deal.find(input)
 
     puts " "
-    puts "---------------------------------------------------------------------------------------------------"
-    puts "You chose number #{input}. #{choice.name}. This is a GREAT DEAL!"
-    puts "Here's some of the details: "
-    puts "---------------------------------------------------------------------------------------------------"
+    puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
+    puts "You chose number #{input}. #{choice.name}. This is a GREAT DEAL!".colorize(:yellow)
+    puts "Here's some of the details: ".colorize(:yellow)
+    puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
     puts " "
 
     print_deal(choice)
     puts " "
-    puts "would you like to find out more?"
+    puts "would you like to find out more?".colorize(:light_magenta)
     answer = gets.strip.upcase
     if answer == "Y" || answer == "YES"
       choice_url = choice.url
       TopTravelDeals::CLI.scrape_description(choice_url)
     end
 
-    puts "Would you like to see another deal?"
+    puts "Would you like to see another deal?".colorize(:light_magenta)
 
     answer1 = gets.strip.upcase
     if answer1 == "Y" || answer1 == "YES"
@@ -65,15 +67,15 @@ class TopTravelDeals::CLI
   end
 
   def print_deal(choice)
-    puts "#{choice.name}"
-    puts "Location.....#{choice.location}"
-    puts "Price........#{choice.price}"
-    puts "Offered By...#{choice.offered_by}"
-    puts "Webpage......#{choice.url}"
+    puts "#{choice.name}".colorize(:yellow)
+    puts "Location.....#{choice.location}".colorize(:yellow)
+    puts "Price........#{choice.price}".colorize(:yellow)
+    puts "Offered By...#{choice.offered_by}".colorize(:yellow)
+    puts "Webpage......#{choice.url}".colorize(:yellow)
   end
 
   def goodbye
-    puts "Goodbye! Come back soon to see more Top Travel Deals!!"
+    puts "Goodbye! Come back soon to see more Top Travel Deals!!".colorize(:light_magenta)
   end
 
   def self.scrape_index
@@ -94,12 +96,12 @@ class TopTravelDeals::CLI
         #system("open'#{choice_url}'")
       summary = detail.search("div.section").text.strip
       title = detail.search("title").text
-      puts "---------------------------------------------------------------------------------------------------"
-      puts "                       #{title}                      "
-      puts "---------------------------------------------------------------------------------------------------"
-      puts "#{summary}"
+      puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
+      puts "                       #{title}                      ".colorize(:yellow)
+      puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
+      puts "#{summary}".colorize(:yellow)
       puts " "
-      puts "---------------------------------------------------------------------------------------------------"
+      puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
     end
 
 #The Deal = detail.search("div.section h2").text

@@ -1,12 +1,11 @@
 # TopTravelDeals
 
-This Ruby Gem provides a CLI to view the 20 Top Travel Deals from the Travelzoo website. It will allow you to see a list of the top 20 deals and to choose a deal to get the details on.
+This Ruby Gem provides a CLI to view the 20 Top Travel Deals from the Travelzoo website. It will allow you to see a list of the top 20 deals and to choose a deal and then get the details on it.
 
 
 
 ## Installation
 
-Add this line to your application's Gemfile:
 
 ```ruby
 gem 'top_travel_deals'
@@ -22,7 +21,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Type the below and follow the on screen prompts
+
+$ top-travel-deals
 
 ## Development
 

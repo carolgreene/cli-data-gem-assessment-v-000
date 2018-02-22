@@ -5,11 +5,11 @@ class TopTravelDeals::CLI
 
 
   def call
-    puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
+    puts "----------------------------------------------------------------------------------".colorize(:yellow)
     puts "                                                                             "
     puts "                   Welcome to Top Travel Deals!                              ".colorize(:yellow)
     puts "                                                                             "
-    puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
+    puts "----------------------------------------------------------------------------------".colorize(:yellow)
     TopTravelDeals::Scraper.scrape_list
     list_deals
     menu
@@ -22,7 +22,7 @@ class TopTravelDeals::CLI
     TopTravelDeals::Deal.all.each.with_index(1) do |trip, index|
       puts "#{index}. #{trip.name}.....only #{trip.price}".colorize(:yellow)
     end
-    puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
+    puts "----------------------------------------------------------------------------------".colorize(:yellow)
   end
 
   def menu
@@ -40,24 +40,31 @@ class TopTravelDeals::CLI
     choice = TopTravelDeals::Deal.find(input)
 
     puts " "
-    puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
+    puts "----------------------------------------------------------------------------------".colorize(:yellow)
     puts "You chose number #{input}. #{choice.name}. This is a GREAT DEAL!".colorize(:yellow)
     puts "Here's some of the details: ".colorize(:yellow)
-    puts "---------------------------------------------------------------------------------------------------".colorize(:yellow)
+    puts "----------------------------------------------------------------------------------".colorize(:yellow)
     puts " "
 
     print_deal(choice)
     puts " "
     puts "would you like to find out more?".colorize(:blue)
     answer = gets.strip.upcase
+    until answer == "Y" || answer == "YES" ||answer == "N" || answer == "NO"
+      puts "That's not a valid answer, please enter yes or no (y/n).".colorize(:blue)
+      answer = gets.strip.upcase
+    end
     if answer == "Y" || answer == "YES"
       choice_url = choice.url
       TopTravelDeals::Scraper.scrape_description(choice_url)
     end
 
     puts "Would you like to see another deal?".colorize(:blue)
-
     answer1 = gets.strip.upcase
+    until answer1 == "Y" || answer1 == "YES" ||answer1 == "N" || answer1 == "NO"
+      puts "That's not a valid answer, please enter yes or no (y/n).".colorize(:blue)
+      answer1 = gets.strip.upcase
+    end
     if answer1 == "Y" || answer1 == "YES"
       list_deals
       menu

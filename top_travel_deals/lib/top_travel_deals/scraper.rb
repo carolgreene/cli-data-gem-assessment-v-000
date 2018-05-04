@@ -1,13 +1,8 @@
+
 require 'pry'
 
 class TopTravelDeals::Scraper
 
-  #deal list div class deal-info clearfix".text
-  #number i class "top20-numbers icon-top20_badge"
-  #price- doc.search("span.deal-headline-price").text
-  #trip-  doc.search("span.deal-headline-text").text
-  #location p class "h6 deal-location"
-  #summary- doc.search("p.deal-summary").text
 
   def self.scrape_list
     #should return a list of instances of the travel deals
@@ -22,17 +17,9 @@ class TopTravelDeals::Scraper
     end
   end
 
-  def self.scrape_description(choice_url)
-    detail = Nokogiri::HTML(open(choice_url))
-      #system("open'#{choice_url}'")
-    summary = detail.search("div.section").text.strip
-
-    title = detail.search("title").text
-    puts "----------------------------------------------------------------------------------".colorize(:yellow)
-    puts "                       #{title}                      ".colorize(:yellow)
-    puts "----------------------------------------------------------------------------------".colorize(:yellow)
-    puts "#{summary}".colorize(:yellow)
-    puts " "
-    puts "----------------------------------------------------------------------------------".colorize(:yellow)
+  def self.scrape_description(deal)
+    detail = Nokogiri::HTML(open(deal.url))
+      #system("open'#{deal_url}'")
+    deal.summary = detail.search("div.section").text.strip
   end
 end
